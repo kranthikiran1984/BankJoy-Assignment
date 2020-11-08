@@ -13,3 +13,6 @@ this by no means the end of possibilities that can go into creating a real appli
 5) Core features like "Transfer Money from one member account to another member account" can be effectively implemented with State Pattern 
   (Empty classes have been created to show case that)
 6) HATEOS principle has not been applied to REST end points.
+7) Trasactions are processed synchronously in this assignment and transaction log is not saved (due to time constraints). I believe the core part of banking application is to process the trasactions with a reliable, robust and scalable Message Broker softwares (like kafka), so that the order and singulairty of transaction is maintained. Though I do not have working expereince with Event-Sourcing pattern, I feel Event Sourcing pattern is  well suited for abcnking services, becasue the trail of activity of transactions is very imperative.
+8) The test cases are not exhaustive. I can add (and improve it) from what we have so far.
+
