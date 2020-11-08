@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using BankingApi.Data;
 using BankingApi.Services.Contracts;
+using BankingApi.Services.Events;
 using BankingApi.Services.Implementations;
 using BankingApi.Services.Validations;
 using System;
@@ -29,6 +30,11 @@ namespace BankingApi.Infrastructure
             builder.RegisterType<MemberValidator>().AsSelf();
             builder.RegisterType<AccountValidator>().AsSelf();
             builder.RegisterType<InstitutionValidator>().AsSelf();
+
+            //events
+            builder.RegisterType<EventPublisher>().As<IEventPublisher>().InstancePerLifetimeScope();
+            builder.RegisterType<SubscriberService>().As<ISubscriberService>().InstancePerLifetimeScope();
+
         }
     }
 }

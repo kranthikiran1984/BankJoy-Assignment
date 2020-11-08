@@ -1,6 +1,7 @@
 ﻿using BankingApi.Core.Domain;
 using BankingApi.Data;
 using BankingApi.Services.Contracts;
+using BankingApi.Services.Events;
 using BankingApi.Services.Responses;
 using BankingApi.Services.Validations;
 using FluentValidation;
@@ -17,11 +18,13 @@ namespace BankingApi.Services.Implementations
     {
         private readonly IJsonRepository<Member> _memberRepository;
         private readonly MemberValidator _membervalidator;
+        private readonly IEventPublisher _eventPublisher;
 
-        public MemberService(IJsonRepository<Member> memberRepository, MemberValidator membervalidator)
+        public MemberService(IJsonRepository<Member> memberRepository, MemberValidator membervalidator, IEventPublisher eventPublisher)
         {
             _memberRepository = memberRepository;
             _membervalidator = membervalidator;
+            _eventPublisher = eventPublisher;
         }
 
         public async Task<BasicResponse> AddMember(Member member, int institutionId)
@@ -36,6 +39,8 @@ namespace BankingApi.Services.Implementations
 
                 await _memberRepository.Insert(member);
                 response.WasSuccessful = true;
+
+                _eventPublisher.Publish(new MemberCreatedEvent(member));
             }
 
             return response;
