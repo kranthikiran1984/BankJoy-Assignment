@@ -16,6 +16,7 @@ this by no means the end of possibilities that can go into creating a real appli
   (Empty classes have been created to show case that)
 8) HATEOS principle has not been applied to REST end points.
 9) Trasactions are processed synchronously in this assignment and transaction log is not saved (due to time constraints). I believe the core part of banking application is to process the trasactions with a reliable, robust and scalable Message Broker softwares (like kafka), so that the order and singulairty of transaction is maintained. Though I do not have working expereince with Event-Sourcing pattern, I feel Event Sourcing pattern is  well suited for abcnking services, becasue the trail of activity of transactions is very imperative.
-10) The test cases are not exhaustive. I can add (and improve it) from what we have so far.
+10) Some sample events are created and published just to demonstrate how events can be useful design instead of cluttering unrelated code in a method.
+11) The test cases are not exhaustive. I can add (and improve it) from what we have so far.
 
 Thank you!
