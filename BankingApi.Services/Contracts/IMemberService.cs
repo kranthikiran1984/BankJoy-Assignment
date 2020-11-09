@@ -13,7 +13,7 @@ namespace BankingApi.Services.Contracts
         BasicResponse<List<Member>> GetAllMembersByInstitution(int institutionId);
         BasicResponse<Member> GetMemberById(int memberId);
         Task<BasicResponse> AddMember(Member member, int institutionId);
-        Task<BasicResponse> UpdateMember(Member member);
+        Task<BasicResponse<Member>> UpdateMember(Member member);
         Task<BasicResponse> DeleteMember(int memberId);
     }
 }

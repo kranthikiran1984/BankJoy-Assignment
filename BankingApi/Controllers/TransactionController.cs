@@ -20,7 +20,7 @@ namespace BankingApi.Controllers
             _transactionService = transactionService;
         }
 
-        // GET: api/<MemberController>
+        // POST: api/<UpdateController>
         [HttpPost]
         public async Task<IActionResult> Update(int memberId, int accountId, decimal amount)
         {
@@ -30,7 +30,7 @@ namespace BankingApi.Controllers
             return Ok(transactionResult);
         }
 
-        // GET: api/<MemberController>
+        // POST: api/<TransactionController>
         [HttpPost]
         public async Task<IActionResult> Transfer(int fromMemberId, int accountId, int toMemberId, int toAccountId, decimal amount)
         {

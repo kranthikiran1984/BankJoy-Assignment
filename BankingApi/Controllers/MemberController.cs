@@ -69,7 +69,7 @@ namespace BankingApi.Controllers
         [HttpPut]
         public async Task<IActionResult> Delete(Member member)
         {
-            await _memberService.UpdateMember(member);
+            var updatedMember = await _memberService.UpdateMember(member);
 
             return Ok(member);
         }

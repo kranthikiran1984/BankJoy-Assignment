@@ -85,11 +85,13 @@ namespace BankingApi.Services.Implementations
             return response;
         }
 
-        public async Task<BasicResponse> UpdateMember(Member member)
+        public async Task<BasicResponse<Member>> UpdateMember(Member member)
         {
-            var response = new BasicResponse();
+            //need to add validations prior to update
+            var response = new BasicResponse<Member>();
             await _memberRepository.Update(member);
 
+            response.Object = member;
             response.WasSuccessful = true;
             return response;
         }

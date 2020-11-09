@@ -26,13 +26,6 @@ namespace BankingApi.Controllers
             return Ok(pagedInstitutions);
         }
 
-        // GET api/<InstitutionController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         [HttpPost]
         public async Task<IActionResult> Add(Institution institution)
         {

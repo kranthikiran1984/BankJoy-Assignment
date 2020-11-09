@@ -1,6 +1,7 @@
 ﻿using BankingApi.Core.Domain;
 using BankingApi.Data;
 using BankingApi.Services.Contracts;
+using BankingApi.Services.Events;
 using BankingApi.Services.Implementations;
 using BankingApi.Services.Model;
 using BankingApi.Services.Validations;
@@ -21,6 +22,8 @@ namespace BankingApi.BankingApi.Services.Tests
         private ITransactionService _transactionService;
         private IAccountService _accountService;
         private MemberValidator _memberValidator;
+        private IEventPublisher _eventPublisher;
+        private ISubscriberService _subscriberService;
 
         [SetUp]
         public void SetUp()
@@ -29,7 +32,9 @@ namespace BankingApi.BankingApi.Services.Tests
             _accountRepository = new Mock<IJsonRepository<Account>>();
             _memberValidator = new MemberValidator();
 
-            _memberService = new MemberService(_memberRepository.Object, _memberValidator);
+            _subscriberService = new SubscriberService();
+            _eventPublisher = new EventPublisher(_subscriberService);
+            _memberService = new MemberService(_memberRepository.Object, _memberValidator, _eventPublisher);
             _accountService = new AccountService(_accountRepository.Object, _memberRepository.Object);
             _transactionService = new TransactionService(_accountService, _memberService);
         }
